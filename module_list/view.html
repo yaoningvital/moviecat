@@ -1,0 +1,40 @@
+<h1>{{title}}</h1>
+<hr>
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="item in subjects">
+    <span class="badge">{{item.rating.average}}</span>
+    <div class="media">
+      <div class="media-left media-middle">
+        <a ng-href="{{item.alt}}">
+          <img class="media-object" ng-src="{{item.images.small}}">
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">{{item.title}}</h4>
+        <h5>导演：<span ng-repeat="director in item.directors">{{director.name}}<span ng-hide="$last">、&nbsp;</span></span></h5>
+        <h5>类型：<span ng-repeat="genre in item.genres">{{genre}}<span ng-hide="$last">、&nbsp;</span></span></h5>
+        <h5>演员：<span ng-repeat="cast in item.casts">{{cast.name}}<span ng-hide="$last">、&nbsp;</span></span></h5>
+      </div>
+    </div>
+  </li>
+</ul>
+<div>
+  <!-- loading -->
+  <div class="mark" ng-hide="completed">
+    <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+  </div>
+  <!-- loading end -->
+  <!-- 分页 -->
+  <nav ng-show="completed">
+    <p>共{{totalCount}}条记录，第{{currentPage}}页/共{{totalPage}}页</p>
+    <ul class="pager">
+      <li ng-class="{disabled:currentPage==1}"><a ng-click="changePage(currentPage-1)">上一页</a></li>
+      <li ng-class="{disabled:currentPage==totalPage}"><a ng-click="changePage(currentPage+1)">下一页</a></li>
+    </ul>
+  </nav>
+  <!-- 分页 end -->
+</div>
